@@ -27,7 +27,7 @@ int main() {
 
         for (int i = 0; i < points; ++i) {
             double psi = norm * std::sin(n * M_PI * x[i] / L);
-            double prob = psi * psi;
+            doule prob = psi * psi;
 
             std::cout << std::setw(6) << x[i] << "   "
                       << std::setw(12) << psi << "   "
