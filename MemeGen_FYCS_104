@@ -1,0 +1,87 @@
+# college_meme_generator.py
+# A fun single-file project for college GitHub repo
+# Just run it and enjoy! 🚀
+
+import random
+import datetime
+import os
+
+# ────────────────────────────────────────────────
+#          COLLEGE MEME DATABASE 😭😂
+# ────────────────────────────────────────────────
+
+memes = [
+    "When you submit assignment 2 minutes before deadline → 'Connection timeout'",
+    "Me during exam: calculating how many marks I can lose and still pass",
+    "Professor: 'This is easy' → proceeds to write 10-page theory",
+    "Group project be like: 1 guy does everything, others do PowerPoint",
+    "Hostel life: surviving on 8₹ Maggi and vibes",
+    "When teacher says 'surprise test tomorrow' but tomorrow is Sunday",
+    "Me: I'll study from tomorrow\nTomorrow: *repeat*",
+    "Pocket money finished on day 3 → living like a monk till next month",
+    "When you open WhatsApp group after 2 days → 999+ messages",
+    "Viva be like: I know nothing but I will speak with confidence",
+    "When placement season starts but your CGPA is 6.8",
+    "Me pretending to understand the whole semester in 1 night",
+    "Canteen samosa price increased → now officially richer than me",
+]
+
+roasts = [
+    "Bro your attendance is on life support 📉",
+    "Your coding style deserves its own horror movie",
+    "You submit assignments like you're doing charity",
+    "Your commit messages are more mysterious than your love life",
+    "CGPA so low even gravity is impressed",
+]
+
+encouragements = [
+    "Keep going king/queen, placements will fear you soon! 🔥",
+    "One more sem and you're finally free from this torture",
+    "You're surviving college — that's already legendary",
+    "Your future self is proud of you (even if present self is crying)",
+]
+
+# ────────────────────────────────────────────────
+#                   MAIN MAGIC
+# ────────────────────────────────────────────────
+
+def generate_meme():
+    current_hour = datetime.datetime.now().hour
+    
+    mood = "Good Morning" if 5 <= current_hour < 12 else \
+           "Afternoon vibes" if 12 <= current_hour < 17 else \
+           "Evening struggle" if 17 <= current_hour < 22 else \
+           "Late night regret"
+
+    meme = random.choice(memes)
+    extra = random.choice([random.choice(roasts), random.choice(encouragements), ""])
+
+    header = f"✨ College Meme Generator ✨\n{mood} | {datetime.date.today()}\n"
+    separator = "─" * 50
+
+    output = f"{header}{separator}\n\"{meme}\"\n\n{extra}\n{separator}"
+
+    return output
+
+
+def save_meme():
+    filename = f"meme_{datetime.date.today()}.txt"
+    content = generate_meme()
+    
+    with open(filename, "w", encoding="utf-8") as f:
+        f.write(content)
+    
+    print(content)
+    print(f"\nSaved as: {filename}")
+    print("You can commit & push this to your GitHub repo! 🚀")
+
+
+# ────────────────────────────────────────────────
+if __name__ == "__main__":
+    print("Welcome to College Meme Generator!\n")
+    save_meme()
+    
+    print("\nWant another one? (y/n): ", end="")
+    if input().strip().lower() == 'y':
+        print("\n" + "="*60 + "\n")
+        save_meme()
